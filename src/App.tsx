@@ -1,30 +1,16 @@
 import { useState } from "react";
 import { css } from "../styled-system/css";
 import exampleCommanders from "./assets/example";
-
-const shuffleArray = <T,>(array: T[]) => {
-  const output: T[] = Array.from(array);
-
-  for (let i = output.length - 1; i > 0; i--) {
-    const random = Math.floor(Math.random() * (i + 1));
-    const tmp = output[i];
-    output[i] = output[random];
-    output[random] = tmp;
-  }
-
-  return output;
-};
+import { shuffleArray } from "./utils";
 
 function App() {
   const [myCommander, setMyCommander] = useState("");
   const [commanders, setCommanders] = useState(exampleCommanders.join("\n"));
-  const [matching, setMatching] = useState<
-    { name: string; isMine: boolean }[] | undefined
-  >();
+  const [matching, setMatching] = useState<Player[] | undefined>();
   const handleClickButton = () => {
     const splittedCommanders = commanders.split(/\n/);
     const shuffledCommanders = shuffleArray(splittedCommanders);
-    const players =
+    const players: Player[] =
       myCommander.length !== 0
         ? [
             { name: myCommander, isMine: true },

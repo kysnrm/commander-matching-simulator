@@ -41,9 +41,10 @@ function App() {
     <div
       className={css({
         padding: 4,
-        maxWidth: "3xl",
+        maxWidth: "lg",
         marginX: "auto",
-        md: { padding: 8 },
+        color: "neutral.900",
+        md: { padding: 8, maxWidth: "3xl" },
       })}
     >
       <header className={css({ paddingBottom: 6 })}>
@@ -84,8 +85,6 @@ function App() {
               rows={5}
             />
           </label>
-        </section>
-        <section className={sectionStyle}>
           <button
             className={css({
               paddingX: 6,
@@ -96,7 +95,6 @@ function App() {
               borderRadius: "md",
               cursor: "pointer",
               transition: "all .1s",
-              width: "fit-content",
               _hover: {
                 backgroundColor: "red.700",
               },
@@ -106,6 +104,8 @@ function App() {
           >
             マッチング
           </button>
+        </section>
+        <section className={sectionStyle}>
           {matching && (
             <ul
               className={css({
@@ -118,7 +118,7 @@ function App() {
                 <li
                   key={index}
                   className={css({
-                    color: item.isMine ? "red.600" : "black",
+                    color: item.isMine ? "red.600" : "inherit",
                     display: "flex",
                     gap: 2,
                   })}
@@ -150,6 +150,7 @@ const labelStyle = css({
 });
 const inputStyle = css({
   border: "1px solid",
+  borderColor: "neutral.400",
   borderRadius: "md",
   paddingX: 2,
   paddingY: 1,

@@ -119,6 +119,19 @@ function App() {
           )}
         </section>
       </main>
+      <footer
+        className={css({ width: "full", textAlign: "center", marginTop: 8 })}
+      >
+        Developed by{" "}
+        <a
+          href="https://twitter.com/kysnrm"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={css({ color: "red.500", textDecoration: "underline" })}
+        >
+          @kysnrm
+        </a>
+      </footer>
     </div>
   );
 }

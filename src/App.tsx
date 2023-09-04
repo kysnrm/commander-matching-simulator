@@ -9,14 +9,23 @@ const shuffleArray = <T,>(array: T[]) => {
 function App() {
   const [myCommander, setMyCommander] = useState("");
   const [commanders, setCommanders] = useState(exampleCommanders.join("\n"));
-  const [matching, setMatching] = useState<string[] | undefined>();
+  const [matching, setMatching] = useState<
+    { name: string; isMine: boolean }[] | undefined
+  >();
   const handleClickButton = () => {
     const splittedCommanders = commanders.split(/\n/);
     const shuffledCommanders = shuffleArray(splittedCommanders);
     const players =
       myCommander.length !== 0
-        ? [myCommander, ...shuffledCommanders.slice(0, 3)]
-        : shuffledCommanders.slice(0, 4);
+        ? [
+            { name: myCommander, isMine: true },
+            ...shuffledCommanders.slice(0, 3).map((commander) => {
+              return { name: commander, isMine: false };
+            }),
+          ]
+        : shuffledCommanders.slice(0, 4).map((commander) => {
+            return { name: commander, isMine: false };
+          });
     setMatching(shuffleArray(players));
   };
   return (
@@ -52,7 +61,7 @@ function App() {
             className={css({
               paddingX: 6,
               paddingY: 2,
-              backgroundColor: "teal.500",
+              backgroundColor: "red.500",
               color: "white",
               fontWeight: "bold",
               borderRadius: "md",
@@ -60,7 +69,7 @@ function App() {
               transition: "all .1s",
               width: "fit-content",
               _hover: {
-                backgroundColor: "teal.600",
+                backgroundColor: "red.700",
               },
             })}
             onClick={handleClickButton}
@@ -77,8 +86,11 @@ function App() {
               })}
             >
               {matching.map((item, index) => (
-                <li key={index}>
-                  {index + 1}: {item}
+                <li
+                  key={index}
+                  className={css({ color: item.isMine ? "red.600" : "black" })}
+                >
+                  {index + 1}: {item.name}
                 </li>
               ))}
             </ul>

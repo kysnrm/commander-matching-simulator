@@ -38,7 +38,7 @@ function App() {
       <main className={css({ display: "flex", gap: 6 })}>
         <section className={sectionStyle}>
           <label className={labelStyle}>
-            Your Commander
+            自分の統率者
             <input
               type="text"
               value={myCommander}
@@ -47,7 +47,7 @@ function App() {
             />
           </label>
           <label className={labelStyle}>
-            Each Others Commanders
+            他のプレイヤーの統率者
             <textarea
               value={commanders}
               onChange={(e) => setCommanders(e.target.value)}
@@ -75,7 +75,7 @@ function App() {
             onClick={handleClickButton}
             role="button"
           >
-            Simulate Matching
+            マッチング
           </button>
           {matching && (
             <ul

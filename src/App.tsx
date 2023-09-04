@@ -38,13 +38,33 @@ function App() {
     setMatching(shuffleArray(players));
   };
   return (
-    <div className={css({ padding: 8 })}>
+    <div
+      className={css({
+        padding: 4,
+        maxWidth: "3xl",
+        marginX: "auto",
+        md: { padding: 8 },
+      })}
+    >
       <header className={css({ paddingBottom: 6 })}>
-        <h1 className={css({ fontSize: "2xl", fontWeight: "bold" })}>
+        <h1
+          className={css({
+            fontSize: "xl",
+            fontWeight: "bold",
+            md: { fontSize: "2xl" },
+          })}
+        >
           Commander Matching Simulator
         </h1>
       </header>
-      <main className={css({ display: "flex", gap: 6 })}>
+      <main
+        className={css({
+          display: "flex",
+          flexDirection: "column",
+          gap: 6,
+          md: { flexDirection: "row" },
+        })}
+      >
         <section className={sectionStyle}>
           <label className={labelStyle}>
             自分の統率者
@@ -61,7 +81,7 @@ function App() {
               value={commanders}
               onChange={(e) => setCommanders(e.target.value)}
               className={inputStyle}
-              rows={10}
+              rows={5}
             />
           </label>
         </section>
@@ -97,9 +117,16 @@ function App() {
               {matching.map((item, index) => (
                 <li
                   key={index}
-                  className={css({ color: item.isMine ? "red.600" : "black" })}
+                  className={css({
+                    color: item.isMine ? "red.600" : "black",
+                    display: "flex",
+                    gap: 2,
+                  })}
                 >
-                  {index + 1}: {item.name}
+                  <span className={css({ width: 3, flexShrink: 0 })}>
+                    {index + 1}
+                  </span>
+                  {item.name}
                 </li>
               ))}
             </ul>
@@ -110,11 +137,16 @@ function App() {
   );
 }
 
-const sectionStyle = css({ display: "flex", flexDirection: "column", gap: 4 });
+const sectionStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: 6,
+  md: { width: "50%" },
+});
 const labelStyle = css({
   display: "flex",
   flexDirection: "column",
-  gap: 1,
+  gap: 2,
 });
 const inputStyle = css({
   border: "1px solid",
